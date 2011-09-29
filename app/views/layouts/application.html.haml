@@ -1,0 +1,15 @@
+!!! XML
+!!! Strict
+%html{html_attrs}
+  %head
+    %title= page_title_helper
+
+    = javascript_include_tag :defaults
+    = (render :partial => '/layouts/timemap_head' , :locals => {:data => @data}) if @show_timemap
+    = stylesheet_link_tag 'application'
+    = calendar_date_select_includes
+    
+  %body{((@show_timeline or @show_timemap) ? {:onLoad=>"onLoad()", :onunload=>"GUnload();"} : {})}
+    = render :partial => '/layouts/header_bar'
+
+    #content_wrapper=yield

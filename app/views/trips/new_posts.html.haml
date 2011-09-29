@@ -1,0 +1,30 @@
+- form_for(@trip, :url => upload_posts_path, :html => { :method => :post,  :multipart => true })  do |f|
+  = f.error_messages
+
+  %p
+    = f.label :File
+    %br
+    = f.file_field :ics_file
+  %p
+    %strong OR
+  %p
+    = f.label "Link"
+    %br
+    = f.text_field :ics_url
+  %p
+    = check_box_tag "restrict_start", value = "1", false, :onclick => "this.checked ? Effect.BlindDown('restrict_start_calendar'):Effect.BlindUp('restrict_start_calendar');"
+    = label_tag "Only import events starting after:"
+    #restrict_start_calendar{:style => 'display: none;'}
+      = f.calendar_date_select :start, :embedded => true
+  %p
+    = check_box_tag "restrict_finish", value = "1", false, :onclick => "this.checked ? Effect.BlindDown('restrict_finish_calendar'):Effect.BlindUp('restrict_finish_calendar');"
+    = label_tag "Only import events ending before:"
+    #restrict_finish_calendar{:style => 'display: none;'}
+      = f.calendar_date_select :finish, :embedded => true
+
+  %p
+    = f.submit 'Import'
+
+  
+
+= link_to 'Back', trip_path(@trip)

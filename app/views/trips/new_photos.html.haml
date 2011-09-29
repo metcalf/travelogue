@@ -1,0 +1,24 @@
+<object type="application/x-java-applet" width= "800" height= "400" id="jsap">
+<param name="codebase" value="/">
+
+<!-- If you are using the pre-signed binary, remember to change the filenames below to reflect the signed binary names e.g sCommonsLibs.jar,smetadata-extractor-2.3.1.jar,sJavaUploader.jar,sswing-layout-1.0.3.jar -->
+
+<param name="archive" value="SCommonsLibs.jar,Smetadata-extractor-2.3.1.jar,SJavaUploader.jar,Sswing-layout-1.0.3.jar">
+
+<param name="code" value="com.pegaa.uploader.UploaderApplet">
+<param name="UploadPolicy" value="image-with-exif">
+<param name="uploadHandlerUrl" value="#{WEB_ROOT+upload_photo_path(:post => {:trip_id => @trip.id, :title => '', :created_at => Time.now}, :user_id => current_user.id, :secret => current_user.secret)}&mass_upload=">
+<param name="maxWidth" value="700">
+<param name="maxHeight" value="400">
+<param name="fileExtensions" value="jpg,jpeg,gif,png">
+<param name="mayscript" value="yes">
+<param name="scriptable" value="true">
+<param name="name" value="Java Uploader">
+<param name="progressbar" value="true">
+<param name="progresscolor" value="#FF0000">
+<param name="logStatus" value="on">
+<param name="idCount" value="1">
+<param name="sessionString" value="JSESSIONID=#{session[:session_id].to_s}">
+
+</object>
+

@@ -1,0 +1,3 @@
+@post.photo.operate do |image|
+  image.resize '140x140' 
+end

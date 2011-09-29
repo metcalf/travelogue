@@ -1,0 +1,43 @@
+- id ||= post.id
+.editor{:id => "editor_div_#{id}"}
+  .form_success{:id => "success_#{id}", :style => "display: none"}
+    The post named #{post.title} was successfully updated!
+  .form_failure{:id => "failure_#{id}", :style => "display: none"}
+    There was a problem saving the post, check your entries and try again
+  - remote_form_for(post, :success => (redirect ? "window.location.reload()" : form_success(id)), :failure => form_failure(id), :html => {:id => "editor_#{id}"}) do |f|
+    = f.error_messages
+    = #render :partial => '/posts/show_small.jpg.flexi', :locals => {'photo' => post.photo }
+    %p
+      = f.label :title
+      %br
+      = f.text_field :title
+    %p
+      = check_box_tag "autoupdate", value = "1", true
+      = label_tag "Update the location and timestamp of similar photos based on these changes:"
+    
+    %p
+      %strong
+        =radio_button_tag 'mode', 'guess', true, :onclick => "Effect.BlindUp('manual_mode');Effect.BlindDown('guess_mode');"
+        Guess the location and date based on the event
+      #guess_mode
+        %p
+          = f.select(:closest_post_id, post.closest_posts.collect {|p| [p.title, p.id]})
+
+    %p
+      %strong
+        =radio_button_tag 'mode', 'set', false, :onclick => "Effect.BlindUp('guess_mode');Effect.BlindDown('manual_mode');"
+        OR, select it manually
+      #manual_mode{:style => 'display: none'}
+        %p
+          = f.label :place_string
+          %br
+          = f.text_field :place_string
+
+        %p
+          = f.label :start
+          %br
+          = f.calendar_date_select :start, :embedded => true
+    
+    %p
+      = f.hidden_field :trip_id
+      = f.submit 'Update'

@@ -1,0 +1,11 @@
+- if post.trip.user == current_user
+  =link_to 'Delete', post, :confirm => 'Are you sure?', :method => :delete
+  - if post.photo
+    =link_to 'Edit', "javascript:void(0)", :onclick => "newiBox('#{edit_photo_path(post)}', 'Edit');"
+    <!--THIS IS A PHOTO-->
+  - else
+    =link_to 'Edit', "javascript:void(0)", :onclick => "newiBox('#{edit_post_path(post)}', 'Edit');"
+=post.title
+
+
+

@@ -1,0 +1,6 @@
+- count = 0
+- @failed.each do |post|
+  = render :partial => '/posts/post_editor', :locals => {:post => post, :id => count, :redirect => false}
+  - count += 1
+  %hr
+= link_to "Go to trip", trip_path(@trip)

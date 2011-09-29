@@ -1,0 +1,15 @@
+- remote_form_for(@trip, :success => "window.location.reload()", :update => "form_errors") do |f|
+  #form_errors
+    = f.error_messages
+
+  %p
+    = f.label :title
+    %br
+    = f.text_field :title
+  %p
+    = f.label :description
+    %br
+    = f.text_field :description
+  %p
+    = f.submit @trip.new_record? ? 'Create Trip' : 'Update Trip'
+    = link_to 'Delete Trip', @trip, :confirm => 'WARNING: This will permanently delete all posts and photos. Are you sure?', :method => :delete

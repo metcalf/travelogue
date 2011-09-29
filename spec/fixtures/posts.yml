@@ -1,0 +1,9 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+quentins_post:
+    id: 1
+    trip_id: 1
+    start: <%= 1.days.ago.to_s %>
+    title: just another stupid test
+    content: blah blah blah
+    

@@ -1,0 +1,18 @@
+%h1 Upload Photo
+
+- form_for(@post, :url => upload_photo_path, :html => { :method => :post,  :multipart => true }) do |f|
+  = f.error_messages
+
+  %p
+    = f.label :Image
+    %br
+    = f.file_field :image_file
+  %p
+    = f.label :caption
+    %br
+    = f.text_field :title
+    = f.hidden_field :trip_id, :value => @trip_id
+  %p
+    = f.submit 'Create'
+
+= link_to 'Back', posts_path

@@ -1,0 +1,17 @@
+%h1 Listing users and their trips
+
+%table
+  %tr
+    %th User Name
+    %th Trip Title
+    %th
+  
+
+  - @users.each do |user|
+    -   user.trips.each do |trip|
+      %tr
+        %td= user.name
+        %td= trip.title
+        %td= link_to 'Show', trip
+
+= link_to 'New trip', new_trip_path 

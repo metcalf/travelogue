@@ -1,0 +1,5 @@
+quentins_trip:
+    id: 1
+    title: "Quentin goes to school"
+    description: "A really trippy test trip"
+    user_id: 1

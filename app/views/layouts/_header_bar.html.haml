@@ -1,0 +1,22 @@
+#header_bar
+  <!-- Some browsers like the floated actionbar to come first, it will appear on the right -->
+  #action_bar
+
+    %ul#nav
+      - menu_parameters.each_with_index do |menu, index|
+        %li{:class => ((index == 0) ? 'first' : '')}
+          - if menu.kind_of?(Array)
+            =menu.first
+            %ul
+              - menu[1..-1].each do |item|
+                %li= item
+          - else
+            =menu
+
+  %h3= page_name
+
+  %span#flash
+    %span.notice= flash[:notice]
+    %span.warning= flash[:warning]
+
+

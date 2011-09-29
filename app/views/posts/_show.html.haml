@@ -1,0 +1,10 @@
+%p
+  %strong
+    - if !post.finish
+      On #{post.start.strftime(DATETIME_FORMAT)} from #{post.place_string}
+    - else
+      Between #{date_range(post.start, post.finish)}
+      - if post.place_string and !post.place_string.empty?
+        %br &nbsp; in #{post.place_string}
+
+=simple_format(post.content)

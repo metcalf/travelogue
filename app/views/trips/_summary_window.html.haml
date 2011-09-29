@@ -1,0 +1,11 @@
+.infotitle= link_to trip.title, trip
+.infodescription 
+  = trip.description
+  %br
+  %br
+  %em= '(' + trip.posts.length.to_s + ' posts and photos)' 
+  %br
+  - if trip.user == current_user
+    = link_to 'Edit', 'javascript:void(0)', :onclick => "newiBox('#{edit_trip_path(trip)}', 'Edit Trip');"
+    |  
+    = link_to 'Delete', trip, :confirm => 'WARNING: This will permanently delete all posts and photos. Are you sure?', :method => :delete

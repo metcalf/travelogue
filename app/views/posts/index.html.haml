@@ -1,0 +1,25 @@
+%h1 Listing posts
+
+%table
+  %tr
+    %th Title
+    %th Content
+    %th Place string
+    %th Start
+    %th Finish
+  
+
+- @posts.each do |post|
+  %tr
+    %td= post.title 
+    %td= post.content[0,50] 
+    %td= post.place_string 
+    %td= post.start 
+    %td= post.finish 
+    %td= link_to 'Show', post 
+    %td= link_to 'Edit', edit_post_path(post) 
+    %td= link_to 'Destroy', post, :confirm => 'Are you sure?', :method => :delete 
+
+%br
+
+= link_to 'New post', new_post_path 
